@@ -1,0 +1,73 @@
+syntax = "proto3";
+
+option csharp_namespace = "itey";
+
+package commander;
+
+service Commander {
+  rpc Echo (EchoRequest) returns (EchoResponse) {};
+  rpc GetHatInfo (HatInfoRequest) returns (HatInfoResponse) {};
+  rpc SetMotorPosition (SetMotorPositionRequest) returns (SetMotorPositionResponse) {};
+  rpc GetMotorPosition (GetMotorPositionRequest) returns (GetMotorPositionResponse) {};
+  rpc NerdsTowerCalibrate (NerdsTowerCalibrateRequest) returns (NerdsTowerCalibrateResponse) {};
+  rpc NerdsTowerDispense (NerdsTowerDispenseRequest) returns (NerdsTowerDispenseResponse) {};
+  rpc PencilDispense (PencilDispenseRequest) returns (PencilDispenseResponse) {};
+}
+
+message EchoRequest {
+  string message = 1;
+}
+
+message EchoResponse {
+  string message = 1;
+}
+
+message HatInfoRequest {}
+
+message HatInfoResponse {
+  string version = 1;
+  string firmwareDate = 2;
+  string signature = 3;
+  double inputVoltage = 4;
+}
+
+
+message SetMotorPositionRequest {
+  string motorID = 1;
+  int64 position = 2;
+  int64 speed = 3;
+  string direction = 4;
+}
+
+message SetMotorPositionResponse {
+  int64 position = 1;
+}
+
+message GetMotorPositionRequest {
+  string motorID = 1;
+}
+
+message GetMotorPositionResponse {
+  float position = 1;
+  int64 speed = 2;
+}
+
+message NerdsTowerCalibrateRequest {
+  string motorID = 1;
+}
+
+message NerdsTowerCalibrateResponse {
+  int64 position = 1;
+}
+
+message NerdsTowerDispenseRequest {
+  string motorID = 1;
+}
+
+message NerdsTowerDispenseResponse {}
+
+message PencilDispenseRequest {
+  string motorID = 1;
+}
+
+message PencilDispenseResponse {}
